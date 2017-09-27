@@ -1,0 +1,29 @@
+{
+  "name": "koa-auth-basic",
+  "version": "1.0.0",
+  "description": "Koa basic auth middleware with custom credential check",
+  "repository": "kbrgl/koa-auth-basic",
+  "author": "Kabir Goel",
+  "license": "MIT",
+  "keywords": [
+    "koa",
+    "auth",
+    "authentication",
+    "basicauth",
+    "basic auth"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "devDependencies": {
+    "koa": "^2.0.0-alpha.3",
+    "mocha": "2",
+    "supertest": "1"
+  },
+  "dependencies": {
+    "basic-auth": "^1.0.3"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test mocha --reporter spec"
+  }
+}
