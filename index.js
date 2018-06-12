@@ -25,10 +25,13 @@ module.exports = function (opts) {
   return async function authBasic(ctx, next) {
     const credentials = auth(ctx)
 
-    if (credentials && checkCredentials(credentials.name, credentials.pass)) {
-      await next()
-    } else {
-      ctx.throw(401)
+    if (credentials) {
+      const valid = await Promise.resolve(checkCredentials(credentials.name, credentials.pass))
+      if (valid) {
+        await next()
+        return
+      }
     }
+    ctx.throw(401)
   }
 }
