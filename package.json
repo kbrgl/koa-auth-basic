@@ -10,7 +10,8 @@
     "auth",
     "authentication",
     "basicauth",
-    "basic auth"
+    "basic auth",
+    "middleware"
   ],
   "files": [
     "index.js"
