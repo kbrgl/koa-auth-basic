@@ -31,7 +31,7 @@ describe('Koa Auth Basic', () => {
     })
   })
 
-  describe('with invalid credentials', () => {
+  describe('with invalid password', () => {
     it('should `throw` 401', done => {
       const app = new Koa()
 
@@ -43,9 +43,27 @@ describe('Koa Auth Basic', () => {
 
       request(app.listen())
       .get('/')
-      .auth('malicious', 'attempt')
+      .auth('name', 'something-else')
       .expect(401)
       .end(done)
+    })
+  })
+
+  describe('with invalid username', () => {
+    it('should `throw` 401', done => {
+      const app = new Koa()
+
+      app.use(authBasic({
+        checkCredentials: function (name, pass) {
+          return name === 'name' && pass === 'pass'
+        },
+      }))
+
+      request(app.listen())
+        .get('/')
+        .auth('something-else', 'pass')
+        .expect(401)
+        .end(done)
     })
   })
 
